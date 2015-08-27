@@ -15,17 +15,20 @@ function traverseDom(currentElement) {
 	traverseDom(currentElement.parent());
 }
 
-/* by default, the extension is turned off so you don't
-   fuck up your websites */
+/* by default, the extension is turned off */
 var extensionEnabled = false;
 
 /* listen for popup opening. turn on wand */
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
-    if (message == "changeCursorCrosshair") {
-      $(document.body).css("cursor","crosshair");
+    if (message == "enable") {
       extensionEnabled = true;
+      $(document.body).css("cursor","crosshair");
     }
+    if (message == "disable") {
+      extensionEnabled = false;
+      $(document.body).css("cursor","default");
+    } 
   }
 )
 
@@ -33,19 +36,13 @@ $(document).ready(function() {
 	$(document).on('click', function (e) {
     if (extensionEnabled) {
       var seen; // the first fixed element
-      traverseDom($(e.target))
+      traverseDom($(e.target));
       
-      // reset: change cursor to normal
-      $(document.body).css("cursor","default");
-
-      // change icon to signal disabled status
-      // put here because content script limitations
-      chrome.runtime.sendMessage("disable");
-      
+      // reset
       extensionEnabled = false;
+      $(document.body).css("cursor","default");
+      chrome.runtime.sendMessage("disable");
     }
   })
 });
-
-
 
