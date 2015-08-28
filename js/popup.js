@@ -32,6 +32,6 @@ chrome.storage.local.get('extensionEnabled', function(items) {
        }); 
     }
   }
-  //window.close();
+  window.close();
 });
 
