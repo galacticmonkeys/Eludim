@@ -13,6 +13,7 @@ function doInCurrentTab(tabCallback) {
     - if it is enabled, disable it by 
         - sending message to content script to change cursor to default
         - sending message to background to change icon
+    close current popup window
 */
 
 chrome.storage.local.get('extensionEnabled', function(items) {
@@ -31,5 +32,6 @@ chrome.storage.local.get('extensionEnabled', function(items) {
        }); 
     }
   }
+  //window.close();
 });
 

@@ -19,3 +19,13 @@ chrome.runtime.onMessage.addListener(
   }
 )
 
+/* Listen for new tab creation to disable extension */
+chrome.tabs.onCreated.addListener(function(tab) {
+   chrome.storage.local.get('extensionEnabled', function(items) {
+      if ('extensionEnabled' in items) {
+         chrome.storage.local.set({'extensionEnabled': false});
+         chrome.tabs.sendMessage(tab.id, "disable"); // send to content page
+         chrome.runtime.sendMessage("disable"); // send to background page 
+      }
+    });
+});
