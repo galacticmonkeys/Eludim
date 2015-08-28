@@ -37,11 +37,6 @@ $(document).ready(function() {
     if (extensionEnabled) {
       var seen; // the first fixed element
       traverseDom($(e.target));
-      
-      // reset
-      extensionEnabled = false;
-      $(document.body).css("cursor","default");
-      chrome.runtime.sendMessage("disable");
     }
   })
 });

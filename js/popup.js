@@ -25,7 +25,6 @@ chrome.storage.local.get('extensionEnabled', function(items) {
        }); 
     } else {
        chrome.storage.local.set({'extensionEnabled' : true});
-       items.extensionEnabled == true;
        doInCurrentTab(function(tab) {
           chrome.tabs.sendMessage(tab.id, "enable"); // send to content page
           chrome.runtime.sendMessage("enable"); // send to background page 

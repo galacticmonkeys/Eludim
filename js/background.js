@@ -3,7 +3,7 @@ chrome.storage.local.set({
   'extensionEnabled': false
 });
 
-/* Sets icon */ 
+/* Sets icon on event*/ 
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     if (message == "disable") {
