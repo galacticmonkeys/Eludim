@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Eludim",
-  "description": "Dim lightbox modals",
-  "version": "0.2",
+  "description": "Removes annoying registration and login popups",
+  "version": "0.3",
 
   "background": {
     "scripts" : [
